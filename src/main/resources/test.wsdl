@@ -1,0 +1,79 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="DataClientService" targetNamespace="http://impl/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://impl/" elementFormDefault="unqualified" targetNamespace="http://impl/" version="1.0">
+            <xs:element name="ATMR_" type="tns:ATMR_"/>
+            <xs:element name="ATMR_Response" type="tns:ATMR_Response"/>
+            <xs:complexType name="ATMR_">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:Request_Details_Type"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Request_Details_Type">
+                <xs:sequence>
+                    <xs:element form="qualified" name="Atm_Id" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ATMR_Response">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:Response_Details_Type"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Response_Details_Type">
+                <xs:sequence>
+                    <xs:element form="qualified" maxOccurs="unbounded" name="Atm" type="tns:Atm_Details_Type"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Atm_Details_Type">
+                <xs:sequence>
+                    <xs:element form="qualified" name="Atm_Id" type="xs:string"/>
+                    <xs:element form="qualified" name="English_Address" type="xs:string"/>
+                    <xs:element form="qualified" name="Arabic_Address" type="xs:string"/>
+                    <xs:element form="qualified" name="GPS_Latitude" type="xs:string"/>
+                    <xs:element form="qualified" name="GPS_Longitude" type="xs:string"/>
+                    <xs:element form="qualified" name="ATM_Type" type="xs:string"/>
+                    <xs:element form="qualified" name="English_City" type="xs:string"/>
+                    <xs:element form="qualified" name="Arabic_City" type="xs:string"/>
+                    <xs:element form="qualified" name="English_Region" type="xs:string"/>
+                    <xs:element form="qualified" name="Arabic_Region" type="xs:string"/>
+                    <xs:element form="qualified" name="Status" type="xs:string"/>
+                    <xs:element form="qualified" name="Business_Hours" type="xs:string"/>
+                    <xs:element form="qualified" name="CAM_Enabled" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://impl/" targetNamespace="http://impl/" version="1.0">
+            <xs:import namespace="http://impl/"/>
+            <xs:element name="ATMR_Request" type="ns1:Request_Details_Type"/>
+            <xs:element name="ATMR_Response" type="ns1:Response_Details_Type"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ATMR_">
+        <wsdl:part element="tns:ATMR_" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ATMR_Response">
+        <wsdl:part element="tns:ATMR_Response" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="DataClientService">
+        <wsdl:operation name="ATMR_">
+            <wsdl:input message="tns:ATMR_" name="ATMR_"> </wsdl:input>
+            <wsdl:output message="tns:ATMR_Response" name="ATMR_Response"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DataClientServiceSoapBinding" type="tns:DataClientService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ATMR_">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="ATMR_">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ATMR_Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DataClientService">
+        <wsdl:port binding="tns:DataClientServiceSoapBinding" name="DataClientServicePort">
+            <soap:address location="http://localhost:8090/services/ATMR_"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

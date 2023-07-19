@@ -1,0 +1,6 @@
+org/usdev/soap/DataClientService_Service.class
+org/usdev/soap/DataClientService.class
+org/usdev/soap/SoapIntegrationService.class
+org/usdev/soap/SoapRequest.class
+org/usdev/soap/SoapResponse.class
+org/usdev/GreetingResource.class
